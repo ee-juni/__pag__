@@ -32,18 +32,23 @@ waits = []
 
 n = int(input("\nHow many target spots?: "))
 while n:
-    wait(0.1)
+    wait(1)
     dummies.append(cur_pos())
     if dummies[-1]==dummies[-2] and dummies[-2]==dummies[-3]:
         targets.append(cur_pos())
-        waits.append(int(input("\nWait how many minutes?: "))*60)
+        waits.append(float(input("\nWait how many minutes?: "))*60)
         n-=1
         dummies=dummies[:-3]
+
+print("Starting in 3 seconds...")
+wait(3)
 
 while True:
     if keyboard.is_pressed('q'): #only neccessary when mouse moves fast
         break
     for idx, el in enumerate(targets):
-        move_to(el)
+        x,y = el
+        move_to(x,y)
+        L()
         wait(waits[idx])
     
